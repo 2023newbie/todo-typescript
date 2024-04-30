@@ -5,9 +5,9 @@ import './index.css'
 import UpdateStatusProvider from './contexts/update-status.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <UpdateStatusProvider>
       <App />
     </UpdateStatusProvider>
-  // </React.StrictMode>,
+  </React.StrictMode>,
 )

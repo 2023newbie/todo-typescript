@@ -24,7 +24,7 @@ const List = () => {
 
             {error && <div>{error.message}</div>}
 
-            {!isLoading && !list.length && !error && <div>You have no todo.</div>}
+            {!isLoading && !list.length && !error && <div>You have no to buy items.</div>}
 
             {list.map(mis => (<ListItem mis={mis} key={mis.id} />))}
         </div>

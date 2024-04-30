@@ -1,14 +1,14 @@
-import { FC, ReactElement, useEffect, useState } from 'react';
+import { FC, ReactElement, useState } from 'react';
 import { rootApi } from '../App';
 import { useUpdateStatusContext } from '../contexts/custom-contexts';
 import Loading from './Loading';
 import useMutation from '../hooks/use-mutation';
-import showSuccessMessage from '../utils/success-message';
+import { PlusIcon } from '@heroicons/react/24/solid';
 
 const Form: FC = (): ReactElement => {
     const { setIsListChange } = useUpdateStatusContext();
     const [mission, setMission] = useState('');
-    const { isSuccess, isLoading, error, mutate, setIsSuccess } = useMutation(
+    const { isLoading, error, mutate } = useMutation(
         rootApi + 'todo.json',
         'POST'
     );
@@ -19,15 +19,8 @@ const Form: FC = (): ReactElement => {
         }
         await mutate({ mission });
         if (!error) setMission('');
+        setIsListChange(true)
     };
-
-    useEffect(() => {
-        if (isSuccess) {
-            showSuccessMessage();
-            setIsSuccess(false);
-            setIsListChange(true);
-        }
-    }, [isSuccess, setIsSuccess, setIsListChange]);
 
     return (
         <>
@@ -35,9 +28,10 @@ const Form: FC = (): ReactElement => {
 
             <div className='flex gap-2 md:gap-4 h-min w-full justify-center flex-col sm:flex-row'>
                 <input
+                    autoComplete='off'
                     id='mission-input'
                     type='text'
-                    placeholder='Type here'
+                    placeholder='Type mission here'
                     className='input input-bordered w-full'
                     value={mission}
                     onChange={e => setMission(e.target.value)}
@@ -50,7 +44,7 @@ const Form: FC = (): ReactElement => {
                     className='btn btn-primary text-slate-200'
                     disabled={isLoading}
                 >
-                    {!isLoading ? 'Submit' : <Loading />}
+                    {!isLoading ? <PlusIcon className='size-6' /> : <Loading />}
                 </button>
             </div>
         </>

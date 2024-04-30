@@ -1,4 +1,5 @@
 import { useState } from "react"
+import showSuccessMessage from "../utils/success-message"
 
 type Fetch = 'POST' | 'DELETE' | 'PUT'
 
@@ -11,14 +12,12 @@ type Options = {
 }
 
 const useMutation = (fetchApi: string, method: Fetch) => {
-    const [isSuccess, setIsSuccess] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<Error | null>(null)
 
-    const mutate = async (data: { mission: string } | undefined) => {
+    const mutate = async (data?: { mission: string }) => {
         setError(null)
         setIsLoading(true)
-        setIsSuccess(false)
 
         const options: Options = {
             method,
@@ -36,7 +35,7 @@ const useMutation = (fetchApi: string, method: Fetch) => {
                 throw Error('Server does not response.')
             }
 
-            setIsSuccess(true)
+            showSuccessMessage(method)
             setIsLoading(false)
 
         } catch (error) {
@@ -46,7 +45,7 @@ const useMutation = (fetchApi: string, method: Fetch) => {
         }
     }
 
-    return { isSuccess, isLoading, error, mutate, setIsSuccess }
+    return { isLoading, error, mutate }
 }
 
 export default useMutation
