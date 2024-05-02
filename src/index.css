@@ -7,3 +7,29 @@
         @apply fill-blue-800 size-[20px] cursor-pointer transition hover:fill-blue-600 absolute  top-0 translate-y-1/2 opacity-0 group-hover:opacity-100;
     }
 }
+
+#buy-list::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+#buy-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+#buy-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.44, rgb(122, 153, 217)),
+        color-stop(0.72, rgb(73, 125, 189)),
+        color-stop(0.86, rgb(83, 105, 173))
+    );
+}
+
+.mission-item.dragging {
+    opacity: 0;
+}

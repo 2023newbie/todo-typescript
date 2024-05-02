@@ -1,7 +1,8 @@
-import { TrashIcon, PencilIcon } from '@heroicons/react/24/solid';
+import { TrashIcon, PencilIcon, AdjustmentsVerticalIcon } from '@heroicons/react/24/solid';
 import { rootApi } from '../App';
 import { useUpdateStatusContext } from '../contexts/custom-contexts';
 import useMutation from '../hooks/use-mutation';
+import { DragEventHandler } from 'react';
 
 const ListItem = ({ mis }: { mis: { mission: string; id: string } }) => {
     const { setIsListChange } = useUpdateStatusContext();
@@ -13,8 +14,20 @@ const ListItem = ({ mis }: { mis: { mission: string; id: string } }) => {
         mutate().then(() => setIsListChange(true));
     };
 
+    const dragStartListener: DragEventHandler<HTMLDivElement> = (e) => {
+        const target = e.target as HTMLElement
+        setTimeout(() => target.classList.add('dragging'), 0);
+    }
+
+    const dragEndListener: DragEventHandler<HTMLDivElement> = (e) => {
+        const target = e.target as HTMLElement
+        target.classList.remove('dragging');
+    }
+
     return (
-        <div className='bg-slate-300 p-2 rounded-md text-slate-950 relative group'>
+        <div className='mission-item bg-slate-300 p-2 rounded-md text-slate-950 relative group flex items-center' draggable onDragStart={dragStartListener} onDragEnd={dragEndListener}>
+            <div className='inline-block drag-btn mr-4'><AdjustmentsVerticalIcon className='size-[20px] fill-blue-800 cursor-all-scroll' /></div>
+
             {mis.mission}
 
             {error && <span className='text-red-500'> - {error.message}</span>}
