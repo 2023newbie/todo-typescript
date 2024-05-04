@@ -15,6 +15,10 @@ const App = () => {
       if (event.key === 'Enter' && document.activeElement === inputEle) {
         document.getElementById('submit-btn')?.click()
       }
+
+      if (event.key === '/') {
+        document.getElementById('mission-input').focus()
+      }
     }
     document.addEventListener('keyup', keyupListener)
 
