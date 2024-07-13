@@ -1,5 +1,5 @@
 import { TrashIcon, PencilIcon, AdjustmentsVerticalIcon } from '@heroicons/react/24/solid';
-import { rootApi } from '../App';
+import { rootApi } from '@/utils/get-url';
 import { useUpdateStatusContext } from '../contexts/custom-contexts';
 import useMutation from '../hooks/use-mutation';
 import { DragEventHandler } from 'react';

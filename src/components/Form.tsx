@@ -1,5 +1,5 @@
 import { FC, ReactElement, useState } from 'react';
-import { rootApi } from '../App';
+import { rootApi } from '@/utils/get-url';
 import { useUpdateStatusContext } from '../contexts/custom-contexts';
 import Loading from './Loading';
 import useMutation from '../hooks/use-mutation';
