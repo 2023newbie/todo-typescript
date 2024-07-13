@@ -1,5 +1,5 @@
 import { DragEventHandler, useEffect } from 'react';
-import { rootApi } from '../App';
+import { rootApi } from '@/utils/get-url';
 import ListItem from './ListItem';
 import { useUpdateStatusContext } from '../contexts/custom-contexts';
 import useQuery from '../hooks/use-query';
