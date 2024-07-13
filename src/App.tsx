@@ -6,8 +6,6 @@ import { createPortal } from 'react-dom'
 
 import 'react-toastify/dist/ReactToastify.css'
 
-export const rootApi = 'https://todolist-f7e76-default-rtdb.asia-southeast1.firebasedatabase.app/'
-
 const App = () => {
   useEffect(() => {
     const keyupListener = (event: KeyboardEvent) => {
