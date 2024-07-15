@@ -5,6 +5,7 @@ import "./index.css";
 import UpdateStatusProvider from "./contexts/update-status.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/login-page.tsx";
+import SignupPage from "./pages/signup-page.tsx";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <LoginPage />
-      }
+      },
+      {
+        path: '/signup',
+        element: <SignupPage />
+      },
     ]
   }
 ])
