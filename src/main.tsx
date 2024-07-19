@@ -6,14 +6,21 @@ import UpdateStatusProvider from "./contexts/update-status.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/login-page.tsx";
 import SignupPage from "./pages/signup-page.tsx";
+import HomePage from "./pages/home-page.tsx";
+import TodoPage from "./pages/todo-page.tsx";
 
 const router = createBrowserRouter([
   {
     path: '/',
+    element: <App />,
     children: [
       {
         index: true,
-        element: <App />
+        element: <HomePage />
+      },
+      {
+        path: '/todo',
+        element: <TodoPage />
       },
       {
         path: '/login',

@@ -12,7 +12,7 @@ const AuthForm = ({ type, submitForm }: Props) => {
   const [password, setPassword] = useState("");
 
   return (
-    <div className="mt-16 flex justify-center">
+    <div className="flex justify-center">
       <div className="rounded-lg bg-slate-800 p-12">
         <h1 className="mb-8 text-xl font-bold">{type} Your Account</h1>
         <form className="flex flex-col gap-6">

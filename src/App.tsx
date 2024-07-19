@@ -1,10 +1,12 @@
-import List from './components/List'
-import Form from './components/Form'
 import { useEffect } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { createPortal } from 'react-dom'
 
 import 'react-toastify/dist/ReactToastify.css'
+import { onAuthStateChanged } from 'firebase/auth'
+import auth from './firebase/auth'
+import Navbar from './components/Navbar'
+import { Outlet } from 'react-router-dom'
 
 const App = () => {
   useEffect(() => {
@@ -23,12 +25,23 @@ const App = () => {
     return () => document.removeEventListener('keyup', keyupListener)
   }, [])
 
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      // const uid = user.uid;
+      console.log(user)
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+
   return (
-    <div className="bg-slate-800 w-screen min-h-screen pt-12 flex justify-center">
-      <div className="flex flex-col w-5/6 sm:w-2/3 md:w-1/2 max-w-lg gap-8">
-        <Form />
-        <List />
-      </div>
+    <div className="relative bg-slate-900 w-screen min-h-screen pt-32 flex flex-col items-center">
+      <Navbar />
+      <Outlet />
       {createPortal(<ToastContainer />, document.body)}
     </div>
   )
